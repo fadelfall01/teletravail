@@ -739,18 +739,44 @@ body.is-editing .editable:focus {
     overflow: hidden !important;
   }
   
-  /* Compact layout rules to enforce single-page fit */
+  /* Enforce desktop layout structure on PDF/print, regardless of print trigger screen size */
+  .cv-header {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .header-left {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 24px !important;
+  }
+
+  .header-right {
+    display: block !important; /* Always show the ribbon */
+  }
+
   .contact-bar {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 12px !important;
     margin-bottom: 12px !important;
     padding: 8px 0 !important;
   }
-  
+
+  .two-columns {
+    display: grid !important;
+    grid-template-columns: 1.7fr 1fr !important; /* Enforce two columns */
+    gap: 15px !important;
+  }
+
+  /* Compact spacing for single-page fit */
   .section-container {
     margin-bottom: 12px !important;
-  }
-  
-  .two-columns {
-    gap: 15px !important;
   }
   
   .services-list li {
