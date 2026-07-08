@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouhamadou Fadel Fall - CV Géomatique</title>
+  <!-- Google Fonts: Outfit for headers, Inter for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-blue">
+
+  <!-- Control Toolbar (Hidden during Print) -->
+  <header class="toolbar no-print">
+    <div class="toolbar-container">
+      <div class="toolbar-brand">
+        <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>CV Interactif — <strong>Mouhamadou Fadel Fall</strong></span>
+      </div>
+      
+      <div class="toolbar-actions">
+        <!-- Color Themes -->
+        <div class="theme-selector">
+          <span class="theme-label">Thème :</span>
+          <button class="theme-dot dot-blue active" data-theme="blue" title="Bleu Impérial"></button>
+          <button class="theme-dot dot-emerald" data-theme="emerald" title="Vert Émeraude"></button>
+          <button class="theme-dot dot-indigo" data-theme="indigo" title="Bleu Indigo"></button>
+          <button class="theme-dot dot-amber" data-theme="amber" title="Orange Ambre"></button>
+        </div>
+
+        <!-- Mode Édition -->
+        <button id="btn-edit" class="btn btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          <span>Activer l'édition</span>
+        </button>
+
+        <!-- Print/PDF -->
+        <button id="btn-print" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Exporter en PDF</span>
+        </button>
+
+        <!-- Reset -->
+        <button id="btn-reset" class="btn btn-danger" title="Réinitialiser les données d'origine">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification (Hidden during Print) -->
+  <div id="edit-indicator" class="edit-indicator no-print">
+    <span class="pulse-dot"></span>
+    <span>Mode édition activé. Vous pouvez modifier n'importe quel texte directement en cliquant dessus.</span>
+  </div>
+
+  <!-- A4 CV Sheet -->
+  <main class="cv-page">
+    <article class="cv-container" id="cv-content">
+      
+      <!-- Top header layout -->
+      <section class="cv-header">
+        <div class="header-left">
+          <!-- Profile image with double circle style -->
+          <div class="avatar-wrapper">
+            <div class="avatar-ring">
+              <img id="profile-img" src="profile.png" alt="Mouhamadou Fadel Fall" class="avatar-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200';">
+            </div>
+            <!-- Upload Overlay in Edit Mode -->
+            <div class="avatar-overlay no-print">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              <span>Changer la photo</span>
+              <input type="file" id="avatar-upload" accept="image/*">
+            </div>
+          </div>
+          
+          <div class="name-block">
+            <h1 class="editable font-header" id="cv-name">Mouhamadou Fadel Fall</h1>
+            <p class="subtitle editable" id="cv-title">Géomatique | Geospatial Data Analyst | Remote Sensing | Python | Web Mapping</p>
+          </div>
+        </div>
+        
+        <!-- Decorative Bookmark Ribbon (Right) -->
+        <div class="header-right">
+          <div class="ribbon"></div>
+        </div>
+      </section>
+
+      <!-- Contact details banner -->
+      <section class="contact-bar">
+        <div class="contact-item">
+          <!-- Pin icon -->
+          <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span class="editable" id="cv-location">Disponible à distance (Monde / Télétravail)</span>
+        </div>
+        
+        <div class="contact-item">
+          <!-- Email icon -->
+          <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span class="editable" id="cv-email">fadelfalldev@gmail.com</span>
+        </div>
+        
+        <div class="contact-item">
+          <!-- Github icon -->
+          <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <span class="editable" id="cv-github">github.com/fadelfall01</span>
+        </div>
+        
+        <div class="contact-item">
+          <!-- Link / Web icon -->
+          <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          <span class="editable" id="cv-portfolio">fadelfall01.github.io/Mon_Portfolio</span>
+        </div>
+      </section>
+
+      <!-- Section: Profil Professionnel / Description -->
+      <section class="section-container">
+        <h2 class="section-title font-header">
+          <span>PROFIL PROFESSIONNEL</span>
+          <svg class="plus-icon no-print" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </h2>
+        <div class="section-content editable" id="cv-description">
+          <p>Géomaticien spécialisé en Systèmes d'Information Géographique (SIG), cartographie numérique, télédétection et analyse de données spatiales.</p>
+          <p>Je travaille sur la collecte, le traitement, l'analyse et la visualisation de données géospatiales pour produire des cartes professionnelles et des solutions basées sur la localisation. Je combine les technologies SIG traditionnelles avec le développement logiciel pour créer des solutions géospatiales modernes.</p>
+        </div>
+      </section>
+
+      <!-- Two-column content layout -->
+      <div class="two-columns">
+        
+        <!-- Left Main Column: Services, Projects, Formations -->
+        <div class="col-left">
+          
+          <!-- Services -->
+          <section class="section-container">
+            <h2 class="section-title font-header">
+              <span>SERVICES QUE JE PROPOSE</span>
+              <svg class="plus-icon no-print" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </h2>
+            <div class="section-content">
+              <ul class="services-list" id="cv-services">
+                <li class="editable">Création de cartes professionnelles avec QGIS/ArcGIS</li>
+                <li class="editable">Analyse spatiale pour projets d'aménagement du territoire</li>
+                <li class="editable">Traitement et classification d'images satellites (Sentinel-2, Landsat)</li>
+                <li class="editable">Visualisation web et développement de cartes interactives (Leaflet, JS)</li>
+                <li class="editable">Conversion, nettoyage et structuration de bases de données SIG</li>
+                <li class="editable">Automatisation de traitements géographiques avec Python</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Projets -->
+          <section class="section-container">
+            <h2 class="section-title font-header">
+              <span>PROJETS</span>
+              <svg class="plus-icon no-print" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </h2>
+            <div class="section-content projects-container" id="cv-projects">
+              
+              <!-- Project 1 -->
+              <div class="project-item">
+                <h3 class="project-name editable">Analyse de l'expansion urbaine de Thiès</h3>
+                <span class="project-tag editable">Projet Personnel</span>
+                <div class="project-details">
+                  <p class="editable"><strong>Objectif :</strong> Analyser les dynamiques d'étalement urbain à l'aide d'images satellites et de classifications supervisées.</p>
+                  <p class="editable"><strong>Technologies :</strong> Sentinel-2, QGIS, Python, Analyse spatiale</p>
+                  <p class="editable"><strong>Résultats :</strong> Cartes comparatives d'occupation du sol, statistiques d'évolution des surfaces artificielles et rapports de changements territoriaux.</p>
+                </div>
+              </div>
+
+              <!-- Project 2 -->
+              <div class="project-item">
+                <h3 class="project-name editable">ExploMap Sénégal — Dashboard géospatial</h3>
+                <span class="project-tag editable">Projet de Visualisation</span>
+                <div class="project-details">
+                  <p class="editable"><strong>Objectif :</strong> Conception et mise en ligne d'une plateforme cartographique pour l'exploration de données géographiques au Sénégal.</p>
+                  <p class="editable"><strong>Technologies :</strong> JavaScript, Leaflet, Données SIG, GeoJSON, HTML/CSS</p>
+                  <p class="editable"><strong>Résultats :</strong> Visualisation dynamique de couches thématiques, outils de recherche et interfaces interactives fluides pour les utilisateurs.</p>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Formation -->
+          <section class="section-container">
+            <h2 class="section-title font-header">
+              <span>FORMATION</span>
+              <svg class="plus-icon no-print" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </h2>
+            <div class="section-content formation-container" id="cv-formations">
+              <div class="formation-item">
+                <h3 class="formation-title editable">Licence Géomatique</h3>
+                <p class="formation-meta editable">Université Iba Der Thiam de Thiès (UIDT) | 2021 - 2024</p>
+                <div class="formation-details">
+                  <p class="editable"><strong>Domaines étudiés :</strong> Géodésie, Cartographie numérique, Télédétection active et passive, SIG, Topographie, Analyse spatiale et programmation.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right Side Column: Technical Skills, Languages -->
+        <div class="col-right">
+          
+          <!-- Competences Techniques -->
+          <section class="section-container">
+            <h2 class="section-title font-header">
+              <span>COMPÉTENCES TECHNIQUES</span>
+              <svg class="plus-icon no-print" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </h2>
+            <div class="section-content skills-container" id="cv-skills">
+              
+              <!-- Skill Category 1 -->
+              <div class="skill-category">
+                <h3 class="skill-cat-title editable">SIG & Cartographie</h3>
+                <ul class="skill-list">
+                  <li class="editable">QGIS & ArcGIS (ArcMap, Pro)</li>
+                  <li class="editable">AutoCAD / Covadis</li>
+                  <li class="editable">GeoDa & Philcarto (Analyse spatiale)</li>
+                  <li class="editable">Matériels & Logiciels Leica</li>
+                  <li class="editable">Cartographie thématique & Analyse</li>
+                  <li class="editable">Géotraitement & Digitalisation</li>
+                  <li class="editable">Systèmes de coordonnées (CRS)</li>
+                </ul>
+              </div>
+
+              <!-- Skill Category 2 -->
+              <div class="skill-category">
+                <h3 class="skill-cat-title editable">Télédétection</h3>
+                <ul class="skill-list">
+                  <li class="editable">Sentinel-2 & Landsat (Imagerie)</li>
+                  <li class="editable">Classification d'images (Supervisée)</li>
+                  <li class="editable">Indices spectraux (NDVI, NDWI, NDBI)</li>
+                  <li class="editable">Analyse de l'occupation du sol</li>
+                </ul>
+              </div>
+
+              <!-- Skill Category 3 -->
+              <div class="skill-category">
+                <h3 class="skill-cat-title editable">Programmation & Data</h3>
+                <div class="sub-skill-group">
+                  <strong class="editable">Python :</strong>
+                  <span class="editable">GeoPandas, Rasterio, GDAL, Pandas, NumPy, Traitement de signal</span>
+                </div>
+                <div class="sub-skill-group">
+                  <strong class="editable">Langage R (Cartographie & Télédétection) :</strong>
+                  <span class="editable">sf, terra, tmap, ggplot2</span>
+                </div>
+                <div class="sub-skill-group">
+                  <strong class="editable">Web Mapping :</strong>
+                  <span class="editable">HTML, CSS, JavaScript, Leaflet, Django, Next.js</span>
+                </div>
+                <div class="sub-skill-group">
+                  <strong class="editable">Bases de données :</strong>
+                  <span class="editable">MySQL & Données spatiales (SpatiaLite)</span>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Langues -->
+          <section class="section-container">
+            <h2 class="section-title font-header">
+              <span>LANGUES</span>
+              <svg class="plus-icon no-print" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </h2>
+            <div class="section-content">
+              <ul class="languages-list" id="cv-languages">
+                <li class="editable"><strong>Français :</strong> Courant (maternelle)</li>
+                <li class="editable"><strong>Anglais :</strong> Niveau professionnel</li>
+              </ul>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="footer no-print">
+    <p>Conçu par Mouhamadou Fadel Fall. Modifiez librement les textes puis cliquez sur "Exporter en PDF".</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
