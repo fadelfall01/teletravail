@@ -242,7 +242,7 @@ body.is-editing .edit-indicator {
   background-color: var(--bg-card);
   width: var(--cv-width);
   min-height: var(--cv-height);
-  padding: 40mm 15mm 20mm 15mm; /* Balanced margins to look exactly like the tablet image */
+  padding: 15mm 15mm 12mm 15mm; /* Reduced top padding to optimize for single page layout */
   position: relative;
   box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
   display: flex;
@@ -719,6 +719,8 @@ body.is-editing .editable:focus {
     background-color: #ffffff !important;
     color: #000000 !important;
     min-height: auto;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .cv-page {
@@ -728,11 +730,43 @@ body.is-editing .editable:focus {
   
   .cv-container {
     box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    min-height: auto !important;
+    border: none !important;
+    padding: 10mm 12mm 10mm 12mm !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    min-height: 297mm !important;
+    overflow: hidden !important;
+  }
+  
+  /* Compact layout rules to enforce single-page fit */
+  .contact-bar {
+    margin-bottom: 12px !important;
+    padding: 8px 0 !important;
+  }
+  
+  .section-container {
+    margin-bottom: 12px !important;
+  }
+  
+  .two-columns {
+    gap: 15px !important;
+  }
+  
+  .services-list li {
+    margin-bottom: 3px !important;
+  }
+  
+  .project-item {
+    padding-bottom: 4px !important;
+  }
+  
+  .skills-container {
+    gap: 8px !important;
+  }
+  
+  .skill-category {
+    padding-bottom: 6px !important;
   }
   
   /* Keep colors when printing */
